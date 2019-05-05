@@ -6,8 +6,10 @@ Route::get('/', function() {
     return view('welcome', ["posts" => Post::all()]);
 });
 
-Route::get('/admin/delete{postID}', function($postID){
-    Post::destroy($postID);
+Route::delete('/admin/delete/{postID}', function($postID) {
+    $post = Post::findOrFail($postID);
+    if($post)
+        $post->delete();
     return redirect('/admin');
 });
 

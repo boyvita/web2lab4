@@ -25,9 +25,11 @@
         <div class="contatiner my-2 p-2 rounded bg-light">
             <h3>{{$post->title}}</h3>
             {{$post->body}}
-            <div class="">
-                <a href="/admin/delete{{$post->id}}" class="btn btn-sm btn-outline-secondary">Удалить</a>
-            </div>
+            <form action="{{ url('/admin/delete', ['id' => $post->id]) }}" method="post">
+                <input class="btn btn-sm btn-outline-secondary" type="submit" value="Delete" />
+                {!! method_field('delete') !!}
+                {!! csrf_field() !!}
+            </form>
         </div>
     @endforeach
 
